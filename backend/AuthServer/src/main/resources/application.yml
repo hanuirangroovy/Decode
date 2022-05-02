@@ -1,0 +1,60 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: auth-server
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  data:
+    mongodb:
+      uri: mongodb://j6c203.p.ssafy.io:27017/escape
+  datasource:
+    url: jdbc:mysql://j6c203.p.ssafy.io:3306/escape?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: escape
+    password: escape
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+      use-new-id-generator-mappings: true
+    show-sql: true
+  profiles:
+    include:
+      - oauth
+      - aws
+      - credentials
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+eureka:
+  #  instance:
+  #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://j6c203.p.ssafy.io:8761/eureka
+
+logging:
+  level.org.springframework: info
+  level.org.springframework.web: info
+  level.com.amazonaws.util.EC2MetadataUtils: error
+
+cors:
+  allowed-origins: "https://j6c203.p.ssafy.io"
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: "*"
+  max-age: 3600
+
+jwt:
+  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpiry: 1800000
+    refreshTokenExpiry: 604800000
+  oauth2:
+    authorizedRedirectUris:
+      - https://j6c203.p.ssafy.io/oauth/redirect

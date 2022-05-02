@@ -1,0 +1,8 @@
+.img {
+  width: 80%;
+  height: 80%;
+}
+
+.minHeight {
+  min-height: 400px;
+}

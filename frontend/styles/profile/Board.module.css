@@ -1,0 +1,7 @@
+.hr_line {
+  border: 0;
+  width: 90%;
+  align: left;
+  height: 3px;
+  background: orange;
+}
